@@ -2,10 +2,13 @@ package main
 
 import "github.com/gin-gonic/gin"
 
+func Index(ctx *gin.Context) {
+	ctx.HTML(200, "index.html", nil)
+}
+
 func main() {
 	router := gin.Default()
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.String(200, "hello, gin")
-	})
-	router.Run("192.168.1.33:9999")
+	router.LoadHTMLGlob("template/*")
+	router.GET("/", Index)
+	router.Run(":9999")
 }
