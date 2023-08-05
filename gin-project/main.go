@@ -15,6 +15,8 @@ func User(ctx *gin.Context) {
 func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("template/**/*")
+	// 静态资源
+	router.Static("/static", "static")
 	router.GET("/", Index)
 	router.GET("/user", User)
 	router.Run(":9999")
